@@ -21,3 +21,12 @@ vim.opt.scrolloff = 8
 vim.diagnostic.config({
   update_in_insert = true,
 })
+
+-- Set color column
+vim.opt.colorcolumn = "80"
+
+-- Reduce update time
+vim.opt.updatetime = 50
+
+-- Disable text wrap
+vim.opt.wrap = false
