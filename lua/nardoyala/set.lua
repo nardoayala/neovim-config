@@ -3,6 +3,7 @@ vim.g.mapleader = " "
 
 -- Show line numbers
 vim.wo.number = true
+vim.opt.relativenumber = true
 
 -- Change indent space
 vim.opt.tabstop = 2
