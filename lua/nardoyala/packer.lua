@@ -11,7 +11,9 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-	use "olimorris/onedarkpro.nvim"
+  -- Themes
+	-- use "olimorris/onedarkpro.nvim"
+  use "rebelot/kanagawa.nvim"
 
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/nvim-treesitter-context')
