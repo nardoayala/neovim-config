@@ -31,12 +31,3 @@ vim.keymap.set("v", "<leader>d", "\"_d")
 -- When on vertical mode, make "control + c" equivalent to escape
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
--- Switch between tabs
-vim.keymap.set("n", "]t", "gt")
-vim.keymap.set("n", "[t", "gT")
-vim.keymap.set("n", "<leader>1", "1gt")
-vim.keymap.set("n", "<leader>2", "2gt")
-vim.keymap.set("n", "<leader>3", "3gt")
-vim.keymap.set("n", "<leader>4", "4gt")
-vim.keymap.set("n", "<leader>5", "5gt")
-
