@@ -18,7 +18,6 @@ return require('packer').startup(function(use)
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/nvim-treesitter-context')
 
-	use('theprimeagen/harpoon')
 
 	use {
 		'VonHeikemen/lsp-zero.nvim',
@@ -37,8 +36,10 @@ return require('packer').startup(function(use)
 	}
 
 	use('github/copilot.vim')
+  use('tpope/vim-fugitive')
+  use('lukas-reineke/indent-blankline.nvim')
+  use('theprimeagen/harpoon')
+  use('theprimeagen/vim-be-good')
+  use('mbbill/undotree')
 
-  use ('lukas-reineke/indent-blankline.nvim')
-
-  use 'tpope/vim-fugitive'
 end)
