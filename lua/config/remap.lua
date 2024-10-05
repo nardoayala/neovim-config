@@ -30,4 +30,3 @@ vim.keymap.set("v", "<leader>d", "\"_d")
 
 -- When on vertical mode, make "control + c" equivalent to escape
 vim.keymap.set("i", "<C-c>", "<Esc>")
-
