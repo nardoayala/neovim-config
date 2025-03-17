@@ -9,6 +9,7 @@ require'nvim-treesitter.configs'.setup {
     "rust",
     "html",
     "liquid",
+    "json",
   },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -33,6 +34,7 @@ require'nvim-treesitter.configs'.setup {
     -- Configure Liquid to use HTML highlighting inside
     liquid = {
       html = true,
+      json = true,
     },
   },
 }
