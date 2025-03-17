@@ -33,4 +33,9 @@ return {
   'theprimeagen/harpoon',
   'theprimeagen/vim-be-good',
   'mbbill/undotree',
+  'numToStr/Comment.nvim',
+  {
+    'Wansmer/treesj',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  }
 }

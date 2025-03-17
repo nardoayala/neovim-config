@@ -1,6 +1,15 @@
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust" },
+  ensure_installed = {
+    "vimdoc",
+    "javascript",
+    "typescript",
+    "c",
+    "lua",
+    "rust",
+    "html",
+    "liquid",
+  },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -18,6 +27,13 @@ require'nvim-treesitter.configs'.setup {
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
+  },
+  injections = {
+    enable = true,
+    -- Configure Liquid to use HTML highlighting inside
+    liquid = {
+      html = true,
+    },
   },
 }
 
