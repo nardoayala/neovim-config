@@ -5,6 +5,9 @@ return {
     lazy = true,
   },
 
+  {'williamboman/mason.nvim'},
+  {'williamboman/mason-lspconfig.nvim'},
+
   -- UI and appearance
   {
     'rebelot/kanagawa.nvim',
@@ -62,22 +65,9 @@ return {
   },
 
   -- LSP and completion
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
-    dependencies = {
-      -- LSP Support
-      {'neovim/nvim-lspconfig'},             -- Required
-      {'williamboman/mason.nvim'},           -- Optional
-      {'williamboman/mason-lspconfig.nvim'}, -- Optional
-      -- Autocompletion
-      {'hrsh7th/nvim-cmp'},                  -- Required
-      {'hrsh7th/cmp-nvim-lsp'},              -- Required
-      {'L3MON4D3/LuaSnip'},                  -- Required
-    },
-    event = { "BufReadPost", "BufNewFile" },
-    config = true,
-  },
+  {'neovim/nvim-lspconfig'},
+  {'hrsh7th/cmp-nvim-lsp'},
+  {'hrsh7th/nvim-cmp'},
   {
     'github/copilot.vim',
     event = "InsertEnter",
