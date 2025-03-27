@@ -5,8 +5,8 @@ return {
     lazy = true,
   },
 
+  --  Package manager
   {'williamboman/mason.nvim'},
-  {'williamboman/mason-lspconfig.nvim'},
 
   -- UI and appearance
   {
@@ -68,11 +68,8 @@ return {
   {'neovim/nvim-lspconfig'},
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/nvim-cmp'},
-  {
-    'github/copilot.vim',
-    event = "InsertEnter",
-    cmd = "Copilot",
-  },
+  {'williamboman/mason-lspconfig.nvim'},
+  {'github/copilot.vim'},
 
   -- Git integration
   {
