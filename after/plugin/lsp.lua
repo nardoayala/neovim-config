@@ -25,9 +25,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
     vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
     vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-    vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+    vim.keymap.set('n', '<leader>vrn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+    vim.keymap.set('n', '<leader>vff', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+    vim.keymap.set('n', '<leader>vca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
   end,
 })
 
@@ -50,8 +50,8 @@ cmp.setup({
     ['<C-p>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
     ['<C-n>'] = cmp.mapping.select_next_item({behavior = 'select'}),
 
-    -- `Enter` key to confirm completion
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
+    -- Key to confirm completion
+    ['<C-y>'] = cmp.mapping.confirm({select = true}),
 
     -- Ctrl+Space to trigger completion menu
     ['<C-Space>'] = cmp.mapping.complete(),
