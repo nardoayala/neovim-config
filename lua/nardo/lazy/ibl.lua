@@ -5,7 +5,6 @@ return {
     "BufReadPost",
     "BufNewFile"
   },
-
   config = function()
     require("ibl").setup()
   end

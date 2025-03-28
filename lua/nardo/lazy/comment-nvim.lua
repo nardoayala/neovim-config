@@ -4,7 +4,6 @@ return {
     "BufReadPost",
     "BufNewFile",
   },
-
   config = function()
     require('Comment').setup()
   end

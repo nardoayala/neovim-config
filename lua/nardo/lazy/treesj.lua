@@ -3,7 +3,6 @@ return {
   dependencies = {
     'nvim-treesitter/nvim-treesitter',
   },
-
   config = function()
     require('treesj').setup({
       ---@type boolean Use default keymaps (<space>m - toggle, <space>j - join, <space>s - split)

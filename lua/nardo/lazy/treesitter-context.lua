@@ -6,7 +6,5 @@ return {
   event = {
     "BufReadPost",
     "BufNewFile"
-  },
-
-  config = true,
+  }
 }

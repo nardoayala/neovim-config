@@ -1,13 +1,11 @@
 return {
   'neovim/nvim-lspconfig',
-
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/nvim-cmp',
     'williamboman/mason-lspconfig.nvim',
     'williamboman/mason.nvim',
   },
-
   config = function()
     -- Reserve a space in the gutter
     -- This will avoid an annoying layout shift in the screen
