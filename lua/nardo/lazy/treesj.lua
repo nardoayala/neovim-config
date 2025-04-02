@@ -27,5 +27,7 @@ return {
       ---@type table Presets for languages
       -- langs = {}, -- See the default presets in lua/treesj/langs
     })
+
+    vim.keymap.set('n', '<leader>m', require('treesj').toggle)
   end
 }
