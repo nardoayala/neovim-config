@@ -1,24 +1,35 @@
 return {
-  'neovim/nvim-lspconfig',
+  "neovim/nvim-lspconfig",
   dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/nvim-cmp',
-    'williamboman/mason-lspconfig.nvim',
-    'williamboman/mason.nvim',
+    "stevearc/conform.nvim",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-cmdline",
+    "hrsh7th/nvim-cmp",
+    "L3MON4D3/LuaSnip",
+    "saadparwaiz1/cmp_luasnip",
+    "j-hui/fidget.nvim",
   },
+
   config = function()
     -- Reserve a space in the gutter
     -- This will avoid an annoying layout shift in the screen
     vim.opt.signcolumn = 'yes'
 
-    -- Add cmp_nvim_lsp capabilities settings to lspconfig
-    -- This should be executed before you configure any language server
-    local lspconfig_defaults = require('lspconfig').util.default_config
-    lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-      'force',
-      lspconfig_defaults.capabilities,
-      require('cmp_nvim_lsp').default_capabilities()
-    )
+    require("conform").setup({
+      formatters_by_ft = {
+      }
+    })
+    local cmp = require('cmp')
+    local cmp_lsp = require("cmp_nvim_lsp")
+    local capabilities = vim.tbl_deep_extend(
+      "force",
+      {},
+      vim.lsp.protocol.make_client_capabilities(),
+      cmp_lsp.default_capabilities())
 
     -- This is where you enable features that only work
     -- if there is a language server active in the file
@@ -41,74 +52,63 @@ return {
       end,
     })
 
-    require('mason').setup({})
-    require('mason-lspconfig').setup({
+    require("fidget").setup({})
+    require("mason").setup()
+    require("mason-lspconfig").setup({
       handlers = {
-        function(server_name)
-          require('lspconfig')[server_name].setup({})
+        function(server_name) -- default handler (optional)
+          require("lspconfig")[server_name].setup {
+            capabilities = capabilities
+          }
         end,
-      },
+
+        ["lua_ls"] = function()
+          local lspconfig = require("lspconfig")
+          lspconfig.lua_ls.setup {
+            capabilities = capabilities,
+            settings = {
+              Lua = {
+                runtime = { version = "Lua 5.1" },
+                diagnostics = {
+                  globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
+                }
+              }
+            }
+          }
+        end,
+      }
     })
 
-    local cmp = require('cmp')
+    local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
     cmp.setup({
-      sources = {
-        { name = 'nvim_lsp' },
-      },
-      mapping = cmp.mapping.preset.insert({
-        -- Navigate between completion items
-        ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = 'select' }),
-        ['<C-n>'] = cmp.mapping.select_next_item({ behavior = 'select' }),
-
-        -- Key to confirm completion
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-
-        -- Ctrl+Space to trigger completion menu
-        ['<C-Space>'] = cmp.mapping.complete(),
-
-        -- Scroll up and down in the completion documentation
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),
-      }),
       snippet = {
         expand = function(args)
-          vim.snippet.expand(args.body)
+          require('luasnip').lsp_expand(args.body)
         end,
       },
+      mapping = cmp.mapping.preset.insert({
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        ["<C-Space>"] = cmp.mapping.complete(),
+      }),
+      sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+      }, {
+        { name = 'buffer' },
+      })
     })
 
-    require('lspconfig').lua_ls.setup {
-      on_init = function(client)
-        if client.workspace_folders then
-          local path = client.workspace_folders[1].name
-          if path ~= vim.fn.stdpath('config') and (vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc')) then
-            return
-          end
-        end
-
-        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-          runtime = {
-            -- Tell the language server which version of Lua you're using
-            -- (most likely LuaJIT in the case of Neovim)
-            version = 'LuaJIT'
-          },
-          -- Make the server aware of Neovim runtime files
-          workspace = {
-            checkThirdParty = false,
-            library = {
-              vim.env.VIMRUNTIME
-              -- Depending on the usage, you might want to add additional paths here.
-              -- "${3rd}/luv/library"
-              -- "${3rd}/busted/library",
-            }
-            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower and will cause issues when working on your own configuration (see https://github.com/neovim/nvim-lspconfig/issues/3189)
-            -- library = vim.api.nvim_get_runtime_file("", true)
-          }
-        })
-      end,
-      settings = {
-        Lua = {}
-      }
-    }
+    vim.diagnostic.config({
+      float = {
+        style = "minimal",
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = "",
+      },
+    })
   end
 }
