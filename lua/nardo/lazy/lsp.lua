@@ -1,7 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "stevearc/conform.nvim",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
@@ -19,27 +18,6 @@ return {
     -- This will avoid an annoying layout shift in the screen
     vim.opt.signcolumn = 'yes'
 
-    require("conform").setup({
-      formatters_by_ft = {
-        javascript = {
-          "prettierd",
-          "prettier",
-          lsp_format = "fallback",
-          stop_after_first = true,
-        },
-        typescript = {
-          "prettierd",
-          "prettier",
-          lsp_format = "fallback",
-          stop_after_first = true,
-        },
-        liquid = {
-          "prettierd",
-          "prettier",
-          stop_after_first = true,
-        },
-      }
-    })
     local cmp = require('cmp')
     local cmp_lsp = require("cmp_nvim_lsp")
     local capabilities = vim.tbl_deep_extend(
