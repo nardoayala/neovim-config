@@ -21,6 +21,23 @@ return {
 
     require("conform").setup({
       formatters_by_ft = {
+        javascript = {
+          "prettierd",
+          "prettier",
+          lsp_format = "fallback",
+          stop_after_first = true,
+        },
+        typescript = {
+          "prettierd",
+          "prettier",
+          lsp_format = "fallback",
+          stop_after_first = true,
+        },
+        liquid = {
+          "prettierd",
+          "prettier",
+          stop_after_first = true,
+        },
       }
     })
     local cmp = require('cmp')
