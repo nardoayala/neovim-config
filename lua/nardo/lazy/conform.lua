@@ -37,12 +37,6 @@ return {
 				prepend_args = { "-i", "2" },
 			},
 		},
-    ensure_installed = {
-      'black',
-      'isort',
-      'prettierd',
-      'stylua',
-    }
 	},
 	init = function()
 		-- If you want the formatexpr, here is the place to set it
