@@ -29,6 +29,20 @@ return {
     require("fidget").setup({})
     require("mason").setup()
     require("mason-lspconfig").setup({
+      ensure_installed = {
+        -- LSP
+        'css-lsp',
+        'eslint-lsp',
+        'lua_ls',
+        'python-lsp-server',
+        'shopify-cli',
+        'ts_ls',
+        -- Formatters
+        'black',
+        'isort',
+        'prettierd',
+        'stylua',
+      },
       handlers = {
         function(server_name) -- default handler (optional)
           require("lspconfig")[server_name].setup {
