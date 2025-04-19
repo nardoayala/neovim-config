@@ -30,18 +30,12 @@ return {
     require("mason").setup()
     require("mason-lspconfig").setup({
       ensure_installed = {
-        -- LSP
-        'css-lsp',
-        'eslint-lsp',
+        'cssls',
+        'eslint',
         'lua_ls',
-        'python-lsp-server',
-        'shopify-cli',
+        'pylsp',
+        'shopify_theme_ls',
         'ts_ls',
-        -- Formatters
-        'black',
-        'isort',
-        'prettierd',
-        'stylua',
       },
       handlers = {
         function(server_name) -- default handler (optional)
