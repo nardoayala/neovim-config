@@ -20,7 +20,7 @@ vim.opt.scrolloff = 8
 
 -- Show diagnostic in insert mode
 vim.diagnostic.config({
-  update_in_insert = true,
+	update_in_insert = true,
 })
 
 -- Set color column
