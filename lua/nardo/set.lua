@@ -14,13 +14,16 @@ vim.opt.expandtab = true
 -- Change search settings
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+-- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Change scroll off spaces
 vim.opt.scrolloff = 8
 
 -- Show diagnostic in insert mode
 vim.diagnostic.config({
-	update_in_insert = true,
+  update_in_insert = true,
 })
 
 -- Set color column
